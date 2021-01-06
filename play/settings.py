@@ -86,8 +86,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'playstation',
-        'USER': 'rustique',
-        'PASSWORD':'uwimpaye12',
+        'USER': 'wambui',
+        'PASSWORD':'playstation',
     }
 }
 
