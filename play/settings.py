@@ -85,12 +85,11 @@ CORS_ALLOWED_ORIGINS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'playstation',
-        'USER': 'wambui',
-        'PASSWORD':'playstation',
+        'NAME': 'playstation1',
+        'USER': 'ABDIHAKIM',
+    'PASSWORD':'123456789',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
