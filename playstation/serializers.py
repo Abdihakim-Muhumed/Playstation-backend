@@ -28,3 +28,16 @@ class LoginUserSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("error 400 Bad request.Invalid Details, key in the correct credentials.")
+    
+    
+class BookingUserSerializer(serializers.Serializer):
+  
+    fullname = serializers.CharField()
+    nickname = serializers.CharField()
+    email = serializers.CharField()    
+      
+    def create(self, validated_data):
+        print(request.user)
+        booking = Booking(**validate_data)
+        booking.save()
+        return booking
