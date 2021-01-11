@@ -9,9 +9,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'],
-                                        None,
-                                        validated_data['password'])
+        user = User.objects.create_user(validated_data['username'], None,validated_data['password'])
         return user
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,3 +27,13 @@ class LoginUserSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError("error 400 Bad request.Invalid Details, key in the correct credentials.")
 
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    model = User
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    
