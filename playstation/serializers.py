@@ -5,19 +5,17 @@ from django.contrib.auth import authenticate
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'first_name', 'last_name', 'email', 'username', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'],
-                                        None,
-                                        validated_data['password'])
+        user = User.objects.create_user(validated_data['username'], None,validated_data['password'])
         return user
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', '',)
         
 class LoginUserSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -28,7 +26,7 @@ class LoginUserSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("error 400 Bad request.Invalid Details, key in the correct credentials.")
-    
+
     
 class BookingUserSerializer(serializers.Serializer):
   
@@ -41,3 +39,15 @@ class BookingUserSerializer(serializers.Serializer):
         booking = Booking(**validate_data)
         booking.save()
         return booking
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+    model = User
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    

@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'corsheaders',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -85,12 +90,11 @@ CORS_ALLOWED_ORIGINS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'playstation',
-        'USER': 'wambui',
-        'PASSWORD':'playstation',
+        'NAME': 'ps5',
+        'USER': 'rustique',
+        'PASSWORD':'uwimpaye12',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -129,3 +133,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+cloudinary.config( 
+  cloud_name = "rustique", 
+  api_key = "727621331229864", 
+  api_secret = "QhNCwOHAnYWbilesfLhTqbwL2Io" 
+)
